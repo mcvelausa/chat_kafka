@@ -1,7 +1,0 @@
-version: "2"
-services:
-  node-chat:
-    #image: "balenalib/raspberry-pi-alpine-node:latest"
-    build: .
-    expose:
-      - "4000"
