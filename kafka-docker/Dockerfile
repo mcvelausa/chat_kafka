@@ -1,19 +1,19 @@
-FROM openjdk:8u212-jre-alpine
+FROM  arm32v7/openjdk:8u212-jre-alpine
 
-ARG kafka_version=2.7.0
-ARG scala_version=2.13
-ARG glibc_version=2.31-r0
+ARG kafka_version=2.3.0
+ARG scala_version=2.12
+ARG glibc_version=2.29-r0
 ARG vcs_ref=unspecified
 ARG build_date=unspecified
 
 LABEL org.label-schema.name="kafka" \
       org.label-schema.description="Apache Kafka" \
       org.label-schema.build-date="${build_date}" \
-      org.label-schema.vcs-url="https://github.com/wurstmeister/kafka-docker" \
+      org.label-schema.vcs-url="https://github.com/bqstony/kafka-docker" \
       org.label-schema.vcs-ref="${vcs_ref}" \
       org.label-schema.version="${scala_version}_${kafka_version}" \
       org.label-schema.schema-version="1.0" \
-      maintainer="wurstmeister"
+      maintainer="wurstmeister,bqstony"
 
 ENV KAFKA_VERSION=$kafka_version \
     SCALA_VERSION=$scala_version \
@@ -39,6 +39,11 @@ RUN apk add --no-cache bash curl jq docker \
 COPY overrides /opt/overrides
 
 VOLUME ["/kafka"]
+
+# tone down the JVM to run better on RASPI
+ENV KAFKA_HEAP_OPTS -Xmx256M\ -Xms256M
+# Zulu embedded doesn't support the G1 compiler and other options set by default - These are a bit more reasonable
+ENV KAFKA_JVM_PERFORMANCE_OPTS -server\ -XX:+DisableExplicitGC\ -Djava.awt.headless=true
 
 # Use "exec" form so that it runs as PID 1 (useful for graceful shutdown)
 CMD ["start-kafka.sh"]
