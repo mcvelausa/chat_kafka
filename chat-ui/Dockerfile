@@ -1,4 +1,4 @@
-FROM node:13.12.0-alpine
+FROM node:15.8.0-alpine
 # Create app directory
 WORKDIR /usr/src/docker-react-chat
 # Install app dependencies
@@ -17,4 +17,4 @@ RUN ls -l
 RUN npm install
 #Your app binds to port 3000 so you’ll use the EXPOSE instruction to have it mapped by the docker daemon:
 EXPOSE 3000
-CMD [“npm”, “start”]
+CMD ["npm", "start"]
