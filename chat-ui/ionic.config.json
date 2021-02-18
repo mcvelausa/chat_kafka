@@ -1,0 +1,7 @@
+{
+  "name": "MaavChat",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
