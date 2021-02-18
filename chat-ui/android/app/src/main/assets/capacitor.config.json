@@ -4,6 +4,13 @@
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
+  "server": {
+    "url": "http://192.168.1.155:3000",
+    "hostname": "app",
+    "iosScheme": "ionic",
+    "androidScheme": "http",
+    "allowNavigation": ["192.168.1.155:3000", "192.168.1.155:8080"]
+  },
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0
