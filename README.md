@@ -1,4 +1,4 @@
-# Chat Application
+# Chat Application (Raspberry)
 A Realtime Chat Application built using React and Kafka as MessageBroker
 
 
